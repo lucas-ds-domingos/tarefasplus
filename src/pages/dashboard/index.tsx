@@ -10,6 +10,7 @@ import { FaTrash } from "react-icons/fa";
 import { db } from "@/src/services/firebaseConnection";
 import { addDoc, collection, query, orderBy, where, onSnapshot, doc, deleteDoc } from "firebase/firestore";    
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 
 interface HomePros{
@@ -84,7 +85,8 @@ export default function Dashboard({ user }: HomePros){
      async function handleShare(id: string){
         await navigator.clipboard.writeText(
             `${process.env.NEXT_PUBLIC_URL}/task/${id}`
-        )
+        ) 
+        toast.success('Link Copiado!')
     }
 
     async function handleDeleteTask(id: string){
